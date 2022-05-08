@@ -1,0 +1,362 @@
+.index {
+  font-size: 40px;
+  .desc {
+    color: red;
+  }
+}
+
+body {
+  background-color: #ffffff;
+  font-family: "PingFang", "Questrial", sans-serif, "Microsoft JhengHei";
+  margin: 0;
+  font-size: 16px;
+  color: #444444;
+}
+
+button {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+}
+
+.todo {
+  max-width: 650px;
+  width: 100%;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 40px;
+  overflow: hidden;
+  h1 {
+    color: #fff;
+  }
+}
+.title {
+  padding: 10px 80px 30px;
+  position: relative;
+}
+.todo__body {
+  padding: 0px 30px 20px;
+}
+.todo__item {
+  display: flex;
+}
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+.add-todo {
+  width: 40%;
+  background-color: #fff;
+  border-width: 0px;
+  padding: 18px;
+  border-radius: 30px;
+  font-size: 0.8em;
+  flex: 1;
+  transition: all 0.2s;
+}
+.add-todo:focus {
+  outline: 0;
+  width: 90%;
+}
+.add-todo:focus + .btn-add {
+  background-position: center right 0px;
+}
+.input-group {
+  position: relative;
+  display: flex;
+  top: -30px;
+}
+.add-todo.error {
+  box-shadow: 0px 0px 8px rgb(247, 100, 100, 0.5);
+  animation: shake 0.3s;
+  animation-iteration-count: 1;
+}
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+  10% {
+    transform: translate(-1px, -1px);
+  }
+  20% {
+    transform: translate(-1px, 0px);
+  }
+  30% {
+    transform: translate(1px, 1px);
+  }
+  40% {
+    transform: translate(1px, 1px);
+  }
+  50% {
+    transform: translate(-1px, 1px);
+  }
+  60% {
+    transform: translate(-1px, 1px);
+  }
+  70% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(-1px, 1px);
+  }
+  90% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    transform: translate(1px, -1px);
+  }
+}
+.error__label {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f76464;
+  font-size: 14px;
+}
+.btn-add {
+  margin-left: 10px;
+  background: no-repeat center right 10px / 20px;
+  border-width: 0;
+  border-radius: 18px;
+  padding: 10px 16px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.btn-delete {
+  border-width: 0;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  background-color: transparent;
+}
+.btn-delete::before,
+.btn-delete::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  background-color: #3870ff;
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+}
+.btn-delete:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.btn-delete:after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.btn-clear {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 15px;
+  color: #feef22;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.todo__list {
+  padding: 15px 15px 30px;
+  overflow: hidden;
+  min-height: 350px;
+}
+.todo__item {
+  display: flex;
+  width: 100%;
+  padding: 10px 0px;
+  align-items: center;
+  transition: all 0.3s;
+}
+.todo__item.remove {
+  position: relative;
+  transform: translateX(120%);
+}
+.todo__content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.todo__text {
+  position: relative;
+  display: inline-block;
+}
+
+.todo__time {
+  margin-right: 5px;
+}
+
+.todo__text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0%;
+  height: 1px;
+  background-image: linear-gradient(127deg, #3870ff, #3aa0ff);
+  transform: translateY(-50%);
+  transition: all 0.25s;
+}
+.todo__item.finish {
+  opacity: 0.6;
+}
+.todo__item.finish .todo__text::after {
+  width: 100%;
+}
+.control {
+  position: relative;
+  margin-right: 10px;
+  height: 20px;
+  width: 20px;
+}
+.control__checkbox {
+  position: absolute;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  margin: 0;
+}
+.control__indicator {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #e6e6e6;
+  border-radius: 5px;
+}
+.control__checkbox:hover input ~ .control__indicator,
+.control__checkbox:active ~ .control__indicator {
+  background: #ccc;
+}
+.control__checkbox:checked ~ .control__indicator:after {
+  display: block;
+}
+.control__indicator:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 8px;
+  top: 4px;
+  width: 3px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.cus-switch {
+  display: flex;
+  color: #444444;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 0 5px 0 rgb(51 51 51 / 20%);
+  background-color: #fff;
+  border: 5px solid #fff;
+  border-radius: 17px;
+  max-width: 300px;
+  margin: 20px auto 15px;
+  .switch-section {
+    flex: 1;
+    text-align: center;
+    padding: 4px;
+    z-index: 1;
+    &.active {
+      color: #fff;
+    }
+    transition: color 0.2s;
+  }
+  .switch-active {
+    background-color: #3870ff;
+    width: 50%;
+    border-radius: 14px;
+    height: 100%;
+    position: absolute;
+    transition: transform 0.2s;
+    &.style-2 {
+      background-color: #8438ff;
+    }
+  }
+}
+
+.style-1 {
+  .todo {
+    box-shadow: 0px 5px 30px rgba(44, 89, 201, 0.5);
+  }
+  .title {
+    background-image: linear-gradient(127deg, #3870ff, #3aa0ff);
+  }
+
+  .add-todo {
+    box-shadow: 0px 2px 10px rgba(44, 89, 201, 0.5);
+    &::placeholder {
+      color: #8fa4be;
+    }
+  }
+  .btn-add {
+    color: #fff;
+    background-color: #3870ff;
+    &:hover {
+      background-color: #2a5ee1;
+    }
+  }
+  .btn-delete::before,
+  .btn-delete::after {
+    content: "";
+    background-color: #3870ff;
+  }
+  .todo__text::after {
+    content: "";
+    background-image: linear-gradient(127deg, #3870ff, #3aa0ff);
+  }
+  .control__checkbox:checked ~ .control__indicator {
+    background-image: linear-gradient(127deg, #3870ff, #3aa0ff);
+  }
+}
+
+.style-2 {
+  .todo {
+    box-shadow: 0px 5px 30px rgba(112, 44, 201, 0.5);
+  }
+  .title {
+    background-image: linear-gradient(127deg, #8438ff, #bd3aff);
+  }
+
+  .add-todo {
+    box-shadow: 0px 2px 10px rgba(112, 44, 201, 0.5);
+    &::placeholder {
+      color: #9f8fbe;
+    }
+  }
+  .btn-add {
+    color: #fff;
+    background-color: #8438ff;
+    &:hover {
+      background-color: #762ae1;
+    }
+  }
+  .btn-delete::before,
+  .btn-delete::after {
+    content: "";
+    background-color: #8438ff;
+  }
+  .todo__text::after {
+    content: "";
+    background-image: linear-gradient(127deg, #8438ff, #bd3aff);
+  }
+  .control__checkbox:checked ~ .control__indicator {
+    background-image: linear-gradient(127deg, #8438ff, #bd3aff);
+  }
+}
