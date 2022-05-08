@@ -33,11 +33,11 @@ const TodoItem = ({ todo, handleDeleteTodo, handleToggleIsDoneTodo }) => {
   );
 };
 
-const oldTodo = localStorage.getItem("todoList")
-  ? JSON.parse(localStorage.getItem("todoList"))
-  : [];
-
 export default function TodoHook() {
+  const oldTodo = localStorage.getItem("todoList")
+    ? JSON.parse(localStorage.getItem("todoList"))
+    : [];
+
   const [todoList, setTodo] = useState(oldTodo);
   const [value, setValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
