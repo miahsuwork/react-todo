@@ -15,26 +15,12 @@ Demo: [https://miahsuwork.github.io/react-todo](https://miahsuwork.github.io/rea
 
 ## 目錄
 
-.
+```text
 ├── README.md
 ├── build
-│   ├── asset-manifest.json
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   ├── robots.txt
-│   └── static
 ├── package-lock.json
 ├── package.json
 ├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
 └── src
     ├── App.css
     ├── App.js
@@ -47,6 +33,7 @@ Demo: [https://miahsuwork.github.io/react-todo](https://miahsuwork.github.io/rea
     ├── reportWebVitals.js
     ├── setupTests.js
     └── style.scss
+```
 
 ### `npm start`
 
