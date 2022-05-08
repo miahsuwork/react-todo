@@ -15,7 +15,7 @@ class TodoItem extends Component {
     const { todo } = this.props;
     return (
       <div
-        className={`todo__item ${todo.isDone ? "finish" : ""}`}
+        className={`todo__item ${todo.isDone && "finish"}`}
         data-todo-id={todo.id}
       >
         <div className="control">
@@ -93,54 +93,53 @@ export default class TodoClass extends Component {
   };
 
   handleDeleteTodo = (id) => {
+    const { todoList } = this.state;
     this.setState({
-      todoList: this.state.todoList.filter((todo) => todo.id !== id),
+      todoList: todoList.filter((todo) => todo.id !== id),
     });
-
-    this.setTodoListToLocal();
   };
 
   handleToggleIsDoneTodo = (id) => {
+    const { todoList } = this.state;
     this.setState({
-      todoList: this.state.todoList.map((todo) => {
+      todoList: todoList.map((todo) => {
         return {
           ...todo,
           isDone: todo.id === id ? !todo.isDone : todo.isDone,
         };
       }),
     });
-
-    this.setTodoListToLocal();
   };
 
   render() {
+    const { todoList, errorMsg, value } = this.state;
     return (
       <div className="todo">
         <div className="title">
           <h1>Todo List</h1>
-          {this.state.todoList.length > 0 ? (
+          {todoList.length > 0 && (
             <button className="btn-clear" onClick={this.handleClearTodoList}>
               Clear List
             </button>
-          ) : null}
+          )}
         </div>
         <div className="todo__body">
           <div className="input-group">
             <input
               className={`input-group__input add-todo 
-                ${this.state.errorMsg ? "error" : ""}`}
+                ${errorMsg && "error"}`}
               type="text"
               placeholder="What do you need to do?"
-              value={this.state.value}
+              value={value}
               onChange={this.handleInputChange}
             />
             <button className="btn-add" onClick={this.handleAddTodo}>
               Add
             </button>
-            <div className="error__label">{this.state.errorMsg}</div>
+            <div className="error__label">{errorMsg}</div>
           </div>
           <div className="todo__list">
-            {this.state.todoList.map((todo) => (
+            {todoList.map((todo) => (
               <TodoItem
                 key={todo.id}
                 todo={todo}

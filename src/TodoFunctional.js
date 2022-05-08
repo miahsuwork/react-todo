@@ -11,7 +11,7 @@ const TodoItem = ({ todo, handleDeleteTodo, handleToggleIsDoneTodo }) => {
 
   return (
     <div
-      className={`todo__item ${todo.isDone ? "finish" : ""}`}
+      className={`todo__item ${todo.isDone && "finish"}`}
       data-todo-id={todo.id}
     >
       <div className="control">
@@ -33,7 +33,7 @@ const TodoItem = ({ todo, handleDeleteTodo, handleToggleIsDoneTodo }) => {
   );
 };
 
-export default function TodoHook() {
+export default function TodoFunctional() {
   const oldTodo = localStorage.getItem("todoList")
     ? JSON.parse(localStorage.getItem("todoList"))
     : [];
@@ -97,17 +97,17 @@ export default function TodoHook() {
     <div className="todo">
       <div className="title">
         <h1>Todo List</h1>
-        {todoList.length > 0 ? (
+        {todoList.length > 0 && (
           <button className="btn-clear" onClick={handleClearTodoList}>
             Clear List
           </button>
-        ) : null}
+        )}
       </div>
       <div className="todo__body">
         <div className="input-group">
           <input
             className={`input-group__input add-todo 
-                ${errorMsg ? "error" : ""}`}
+                ${errorMsg && "error"}`}
             type="text"
             placeholder="What do you need to do?"
             value={value}
