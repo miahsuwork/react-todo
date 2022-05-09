@@ -37,14 +37,17 @@ export default function TodoFunctional() {
   const oldTodo = localStorage.getItem("todoList")
     ? JSON.parse(localStorage.getItem("todoList"))
     : [];
-
   const [todoList, setTodo] = useState(oldTodo);
   const [value, setValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
+    setTodoListToLocalStorage(todoList);
+  }, [todoList]);
+
+  const setTodoListToLocalStorage = (todoList) => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
-  });
+  };
 
   const handleClearTodoList = () => {
     localStorage.removeItem("todoList");
