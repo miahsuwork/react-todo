@@ -34,15 +34,25 @@ const TodoItem = ({ todo, handleDeleteTodo, handleToggleIsDoneTodo }) => {
 };
 
 export default function TodoFunctional() {
-  const oldTodo = localStorage.getItem("todoList")
-    ? JSON.parse(localStorage.getItem("todoList"))
-    : [];
-  const [todoList, setTodo] = useState(oldTodo);
+  const [todoList, setTodo] = useState([]);
   const [value, setValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    setTodoListToLocalStorage(todoList);
+    const oldTodo = localStorage.getItem("todoList")
+      ? JSON.parse(localStorage.getItem("todoList"))
+      : [];
+    if (oldTodo) {
+      setTodo(oldTodo);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (todoList.length > 0) {
+      setTodoListToLocalStorage(todoList);
+    } else {
+      return;
+    }
   }, [todoList]);
 
   const setTodoListToLocalStorage = (todoList) => {

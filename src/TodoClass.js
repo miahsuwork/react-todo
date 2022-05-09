@@ -53,8 +53,10 @@ export default class TodoClass extends Component {
     };
   }
 
-  componentDidUpdate() {
-    localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todoList !== prevState.todoList) {
+      localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
+    }
   }
 
   handleClearTodoList = () => {
